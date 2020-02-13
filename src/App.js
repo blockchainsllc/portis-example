@@ -1,26 +1,56 @@
 import React from 'react';
-import logo from './logo.svg';
+import axios from 'axios';
 import './App.css';
+import RentableAsset from './RentableAsset';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      devices: []
+    }
+
+    this.getDevices = this.getDevices.bind(this)
+  }
+
+  getDevices() {
+    axios.get("https://search-test-usn.slock.it/search")
+      .then((response) => {
+        this.setState({
+          devices: response.data.data.filter(k => k.url.endsWith("omega"))
+        })
+      })
+  }
+
+  componentWillMount() {
+    this.getDevices()
+  }
+
+  render() {
+
+    const deviceCards = this.state.devices.map((device) => {
+      return (
+        <div class="device-card">
+          <RentableAsset key={device.deviceId} device={device}/>
+        </div>
+      )
+    })
+
+    return (
+      <div className="app-container">
+        <div class="header-container">
+          <h1 style={{color: "#FFFFFF"}}>
+            Omega Team's Slocks
+          </h1>
+        </div>
+        <div class="device-cards-container">
+          {deviceCards}
+        </div>
+      </div>
+    );
+  }
+
 }
 
 export default App;
