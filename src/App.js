@@ -31,7 +31,7 @@ class App extends React.Component {
 
     const deviceCards = this.state.devices.map((device) => {
       return (
-        <div class="device-card">
+        <div key={device.deviceId} className="device-card">
           <RentableAsset key={device.deviceId} device={device}/>
         </div>
       )
@@ -39,12 +39,12 @@ class App extends React.Component {
 
     return (
       <div className="app-container">
-        <div class="header-container">
+        <div className="header-container">
           <h1 style={{color: "#FFFFFF"}}>
             Omega Team's Slocks
           </h1>
         </div>
-        <div class="device-cards-container">
+        <div className="device-cards-container">
           {deviceCards}
         </div>
       </div>
