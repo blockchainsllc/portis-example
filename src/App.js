@@ -13,11 +13,10 @@ async function sendMoney(web3) {
   console.log("Account Nonce:", accountNonce);
   var rawTx = {
     nonce: accountNonce,
-    gasPrice: 13000000000,
-    gasLimit: 100000,
+    gasPrice: "0x306DC4200",
+    gasLimit: "0x186A0",
     to: "0xdeadbeef00000000000000000000000000000000",
-    value: 1,
-    data: 0
+    value: "0x0"
   };
 
   //define a inline function to send a transaction
@@ -32,11 +31,11 @@ async function sendMoney(web3) {
       transactionParams.gas = txParams.gas ? txParams.gas : 7000000
       transactionParams.to = txParams.to ? txParams.to : 0x0
 
-      const signedTx = await web3.eth.accounts.signTransaction(transactionParams, ethAccount);
+      const signedTx = await web3.eth.signTransaction(transactionParams, ethAccount);
       return (web3.eth.sendSignedTransaction(signedTx.rawTransaction));
   }
 
-  return handleTx(rawTx, userAccount.privateKey)
+  return handleTx(rawTx, userAccount)
 }
 
 function handleSend(web3) {
@@ -50,11 +49,8 @@ function handleSend(web3) {
 
 function App() {
 
-  const portis = new Portis('d2a8b76f-3111-49f4-90ff-1141e209d383', 'kovan', {useIn3: true});
+  const portis = new Portis('8309e51d-b76e-48aa-855a-1d4801c0e9d4', 'mainnet', {useIn3: true});
   const web3 = new Web3(portis.provider);
-  web3.eth.getAccounts((error, accounts) => {
-  console.log(accounts);
-});
   return (
     <div className="App">
       <header className="App-header">
@@ -62,7 +58,7 @@ function App() {
         <p>
           {message}
         </p>
-        <button className="da-button" onClick={() => handleSend(web3)}>Deposit 1 ETH to 0xDEADBEEF to know</button>
+        <button className="da-button" onClick={() => handleSend(web3)}>Deposit 0 ETH to 0xDEADBEEF to know</button>
       </header>
     </div>
   );
