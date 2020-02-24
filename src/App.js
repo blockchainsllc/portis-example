@@ -49,7 +49,14 @@ function handleSend(web3) {
 
 function App() {
 
-  const portis = new Portis('8309e51d-b76e-48aa-855a-1d4801c0e9d4', 'kovan', {useIn3: true});
+  const in3Config = {
+    nodeUrl: 'in3',
+    chainId: 'kovan',
+    requestCount: 5,
+    minDeposit: 0.01
+  }
+
+  const portis = new Portis('8309e51d-b76e-48aa-855a-1d4801c0e9d4', "kovan");
   const web3 = new Web3(portis.provider);
   return (
     <div className="App">
