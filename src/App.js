@@ -1,16 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import cow from './cow.jpg';
 import './App.css';
 import Portis from '@portis/web3';
 import Web3 from 'web3';
 
-let message = "Is the COW DEAD for BEEF or is the BEEF a DEAD COW ???"
-
 async function sendMoney(web3) {
   const userAccount = (await web3.eth.getAccounts())[0]
-  console.log("Account Address:", userAccount);
   const accountNonce = '0x' + (await web3.eth.getTransactionCount(userAccount)).toString(16);
-  console.log("Account Nonce:", accountNonce);
+
   var rawTx = {
     nonce: accountNonce,
     gasPrice: "0x306DC4200",
@@ -31,17 +28,19 @@ async function sendMoney(web3) {
       transactionParams.gas = txParams.gas ? txParams.gas : 7000000
       transactionParams.to = txParams.to ? txParams.to : 0x0
 
-      const signedTx = await web3.eth.signTransaction(transactionParams, ethAccount);
-      return (web3.eth.sendSignedTransaction(signedTx.rawTransaction));
+      const signedTransaction = await web3.eth.signTransaction(transactionParams, ethAccount);
+      console.log(signedTransaction.raw)
+      return web3.eth.sendSignedTransaction(signedTransaction.raw)
   }
 
   return handleTx(rawTx, userAccount)
 }
 
-function handleSend(web3) {
+function handleSend(web3, setValue) {
   sendMoney(web3).then((receipt) => {
+    console.log(receipt)
     if(receipt.status) {
-      message = "The BEEF is a DEAD COW and the COW is also DEAD to produce the BEEF. #brainf**k"
+      setValue("The BEEF is a DEAD COW and the COW is also DEAD to produce the BEEF. #brainf**k")
     }
   })
 }
@@ -50,22 +49,23 @@ function handleSend(web3) {
 function App() {
 
   const in3Config = {
-    nodeUrl: 'in3',
     chainId: 'kovan',
     requestCount: 5,
     minDeposit: 0.01
   }
 
-  const portis = new Portis('8309e51d-b76e-48aa-855a-1d4801c0e9d4', "kovan");
+  const [value, setValue] = useState("Is the COW DEAD for BEEF or is the BEEF a DEAD COW ???");
+
+  const portis = new Portis('8309e51d-b76e-48aa-855a-1d4801c0e9d4', in3Config, {useIn3: true});
   const web3 = new Web3(portis.provider);
   return (
     <div className="App">
       <header className="App-header">
         <img src={cow} className="App-logo" alt="cow" />
         <p>
-          {message}
+          {value}
         </p>
-        <button className="da-button" onClick={() => handleSend(web3)}>Deposit 0 ETH to 0xDEADBEEF to know</button>
+        <button className="da-button" onClick={() => handleSend(web3, setValue)}>Deposit 0 ETH to 0xDEADBEEF to know</button>
       </header>
     </div>
   );

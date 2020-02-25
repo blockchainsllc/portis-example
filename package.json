@@ -9,7 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.3.1",
+    "react-scripts": "3.4.0",
     "web3": "^1.2.6"
   },
   "scripts": {
@@ -18,13 +18,13 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-provider-engine": "cd ../provider-engine && npm i && npm run prepublishOnly",
-    "install-sdk-deps": "npm run replace-sdk-package-json && npm run replace-sdk-web3-package-json && cd ../web-sdk/packages/portis-web3 && npm i",
+    "install-sdk-deps": "npm run replace-sdk-package-json && npm run replace-sdk-web3-package-json && cd ../web-sdk/packages/portis-web3 && npm i && npm i @portis/web3-provider-engine",
     "replace-sdk-package-json": "cd ../web-sdk && rm ./package.json && cp ../portis-example/sdk-package.json ./package.json",
     "replace-sdk-web3-package-json": "cd ../web-sdk && rm ./packages/portis-web3/package.json && cp ../portis-example/sdk-web3-package.json ./packages/portis-web3/package.json",
     "link-deps": "rm -rf ./node_modules/@portis/web3 && rm -rf ./node_modules/@portis/web3-provider-engine && cd ../ && ln -s $(pwd)/provider-engine $(pwd)/portis-example/node_modules/@portis/web3-provider-engine && ln -s $(pwd)/web-sdk/packages/portis-web3 $(pwd)/portis-example/node_modules/@portis/web3",
     "link-deps-in-sdk": "rm -rf ../web-sdk/packages/portis-web3/node_modules/@portis/web3-provider-engine && cd ../ && ln -s $(pwd)/provider-engine $(pwd)/web-sdk/packages/portis-web3/node_modules/@portis/web3-provider-engine",
-    "build-sdk": "cd ../web-sdk/packages/portis-web3 && npm run build",
-    "port-a-fort": "yarn build-provider-engine && yarn install-sdk-deps && yarn run link-deps-in-sdk && yarn run build-sdk && yarn && yarn link-deps"
+    "build-sdk": "cd ../web-sdk && npm i && npm run build",
+    "port-a-fort": "yarn build-provider-engine && yarn install-sdk-deps && yarn replace-sdk-web3-package-json && yarn link-deps-in-sdk && yarn build-sdk && yarn && yarn link-deps"
   },
   "eslintConfig": {
     "extends": "react-app"
