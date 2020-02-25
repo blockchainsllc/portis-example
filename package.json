@@ -22,7 +22,7 @@
     "replace-sdk-package-json": "cd ../web-sdk && rm ./package.json && cp ../portis-example/sdk-package.json ./package.json",
     "replace-sdk-web3-package-json": "cd ../web-sdk && rm ./packages/portis-web3/package.json && cp ../portis-example/sdk-web3-package.json ./packages/portis-web3/package.json",
     "link-deps": "rm -rf ./node_modules/@portis/web3 && rm -rf ./node_modules/@portis/web3-provider-engine && cd ../ && ln -s $(pwd)/provider-engine $(pwd)/portis-example/node_modules/@portis/web3-provider-engine && ln -s $(pwd)/web-sdk/packages/portis-web3 $(pwd)/portis-example/node_modules/@portis/web3",
-    "link-deps-in-sdk": "rm -rf ../web-sdk/packages/portis-web3/node_modules/@portis/web3-provider-engine && cd ../ && ln -s $(pwd)/provider-engine $(pwd)/web-sdk/packages/portis-web3/node_modules/@portis/web3-provider-engine && npm run build-sdk",
+    "link-deps-in-sdk": "rm -rf ../web-sdk/packages/portis-web3/node_modules/@portis/web3-provider-engine && cd ../ && ln -s $(pwd)/provider-engine $(pwd)/web-sdk/packages/portis-web3/node_modules/@portis/web3-provider-engine",
     "build-sdk": "cd ../web-sdk/packages/portis-web3 && npm run build",
     "port-a-fort": "yarn build-provider-engine && yarn install-sdk-deps && yarn run link-deps-in-sdk && yarn run build-sdk && yarn && yarn link-deps"
   },
