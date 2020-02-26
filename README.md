@@ -25,7 +25,7 @@ const in3Config = {
   minDeposit: 0.01
 }
 
-const portis = new Portis('8309e51d-b76e-48aa-855a-1d4801c0e9d4', in3Config, {useIn3: true});
+const portis = new Portis('dapp-id', in3Config, {useIn3: true});
 const web3 = new Web3(portis.provider);
 ```
 
