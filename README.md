@@ -33,20 +33,35 @@ const web3 = new Web3(portis.provider);
 
 #### Instructions
 
-> WARNING: There is a lot of script wizardry used to bundle three different modified packages into one example. So if it doesn't work -> it doesn't work.
+> WARNING: There is a lot of script wizardry used to bundle three different modified packages into one example. So if it doesn't work -> it doesn't work. make sure you have `v10.17.0` of Node and `v6.11.3` of npm.
+
+**TL;DR:**
+```
+mkdir portis && cd portis
+git clone git@git.slock.it:hardware/portis-example.git
+git clone git@git.slock.it:hardware/portis-web-sdk.git web-sdk
+git clone git@git.slock.it:hardware/portis-provider-engine.git provider-engine
+cd web-sdk && git checkout in3-integration && cd ..
+cd provider-engine && git checkout in3-integration && cd ..
+cd portis-example
+yarn port-a-fort
+yarn start
+```
 
 **Cloning:**
 * Create a directory name portis and move into it. `mkdir portis && cd portis`.
 * Clone the example repo using `git clone git@git.slock.it:hardware/portis-example.git`.
-* Clone the SDK repo using `git clone git@git.slock.it:hardware/portis-web-sdk.git`.
-* Clone the Provider-Engine repo using `git clone git@git.slock.it:hardware/portis-provider-engine.git`
+* Clone the SDK repo using `git clone git@git.slock.it:hardware/portis-web-sdk.git web-sdk`.
+* Clone the Provider-Engine repo using `git clone git@git.slock.it:hardware/portis-provider-engine.git provider-engine`
+
+**Branch Switching:**
+* Navigate inside the web-sdk folder and checkout branch to `in3-integration`. `cd web-sdk && git checkout in3-integration && cd ..`.
+* Navigate inside the provider-engine folder and checkout branch to `in3-integration. `cd provider-engine && git checkout in3-integration && cd ..`
 
 **Script-Casting:**
 * Make sure you move into the example repo. `cd portis-example`.
 * **SPELL: PORT-A-FORT** install deps and link deps in all three repos using this command. `yarn port-a-fort`
-* Start the react server. `yarn start`
-
-> If stuff doesn't work make sure you have `v10.17.0` of Node and `v6.11.3` of npm.
+* Start the react server. `yarn start`.
 
 The React App should open up in a browser window. Inspect the app and switch to the networks tab to see requests fly to the IN3 servers.
 
