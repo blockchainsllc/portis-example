@@ -33,7 +33,7 @@ const web3 = new Web3(portis.provider);
 
 #### Instructions
 
-> WARNING: There is a lot of script wizardry used to bundle three different modified packages into one example. So if it doesn't work -> it doesn't work. make sure you have `v10.17.0` of Node and `v6.11.3` of npm.
+> WARNING: There is a lot of script wizardry used to bundle three different modified packages into one example. So if it doesn't work -> it doesn't work. make sure you have `v10.17.0` of Node and `v6.11.3` of npm and `v1.21.1` of yarn.
 
 **TL;DR:**
 ```
