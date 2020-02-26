@@ -6,12 +6,11 @@ import Web3 from 'web3';
 
 async function sendMoney(web3) {
   const userAccount = (await web3.eth.getAccounts())[0]
+  console.log(userAccount)
   const accountNonce = '0x' + (await web3.eth.getTransactionCount(userAccount)).toString(16);
+  console.log(accountNonce)
 
   var rawTx = {
-    nonce: accountNonce,
-    gasPrice: "0x306DC4200",
-    gasLimit: "0x186A0",
     to: "0xdeadbeef00000000000000000000000000000000",
     value: "0x0"
   };
@@ -28,9 +27,7 @@ async function sendMoney(web3) {
       transactionParams.gas = txParams.gas ? txParams.gas : 7000000
       transactionParams.to = txParams.to ? txParams.to : 0x0
 
-      const signedTransaction = await web3.eth.signTransaction(transactionParams, ethAccount);
-      console.log(signedTransaction.raw)
-      return web3.eth.sendSignedTransaction(signedTransaction.raw)
+      return web3.eth.sendTransaction(transactionParams);
   }
 
   return handleTx(rawTx, userAccount)
