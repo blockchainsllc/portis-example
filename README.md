@@ -1,68 +1,56 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Portis Wallet with IN3 - example
 
-## Available Scripts
+One would normally use the portis wallet's sdk with their web3 library like this
 
-In the project directory, you can run:
+```
+import Portis from '@portis/web3';
+import Web3 from 'web3';
 
-### `yarn start`
+const portis = new Portis('YOUR_DAPP_ID', 'mainnet');
+const web3 = new Web3(portis.provider);
+```
+**For private networks**
+```
+const myPrivateEthereumNode = {
+  nodeUrl: 'https://private.network',
+  chainId: 1,
+};
+const portis = new Portis('dappId', myPrivateEthereumNode);
+```
+**For using IN3**
+```
+const in3Config = {
+  chainId: 'kovan',
+  requestCount: 5,
+  minDeposit: 0.01
+}
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+const portis = new Portis('8309e51d-b76e-48aa-855a-1d4801c0e9d4', in3Config, {useIn3: true});
+const web3 = new Web3(portis.provider);
+```
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+> Supported networks include only **ETHEREUM-MAINNET**, **KOVAN**, **GOERLI**. This means that exisiting dapps using portis for different chains like **RINKEBY** or **ROPSTEN** or NON ETHEREUM CHAINS cannot use IN3 functionality.
 
-### `yarn test`
+#### Instructions
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> WARNING: There is a lot of script wizardry used to bundle three different modified packages into one example. So if it doesn't work -> it doesn't work.
 
-### `yarn build`
+**Cloning:**
+* Create a directory name portis and move into it. `mkdir portis && cd portis`.
+* Clone the example repo using `git clone git@git.slock.it:hardware/portis-example.git`.
+* Clone the SDK repo using `git clone git@git.slock.it:hardware/portis-web-sdk.git`.
+* Clone the Provider-Engine repo using `git clone git@git.slock.it:hardware/portis-provider-engine.git`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Script-Casting:**
+* Make sure you move into the example repo. `cd portis-example`.
+* **SPELL: PORT-A-FORT** install deps and link deps in all three repos using this command. `yarn port-a-fort`
+* Start the react server. `yarn start`
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+> If stuff doesn't work make sure you have `v10.17.0` of Node and `v6.11.3` of npm.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The React App should open up in a browser window. Inspect the app and switch to the networks tab to see requests fly to the IN3 servers.
 
-### `yarn eject`
+**OPPORTUNITIES OF IMPROVEMENTS:**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Portis requires a `nodeUrl` property in the network field for working smoothly. This is because even though they add subproviders on the provider engine their iframe interface internally uses the nodeUrl to communicate to the blockchain. So all the requests that fly outside of the widget use In3 but requests that are relayed through the widget use the `nodeUrl`. The problem lies in the fact that they load this iframe from `widget.portis.io` making it difficult for us to integrate in3 into it. Also it is closed source.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

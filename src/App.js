@@ -48,16 +48,17 @@ function handleSend(web3, setValue) {
 
 function App() {
 
+  const [value, setValue] = useState("Is the COW DEAD for BEEF or is the BEEF a DEAD COW ???");
+
   const in3Config = {
     chainId: 'kovan',
     requestCount: 5,
     minDeposit: 0.01
   }
 
-  const [value, setValue] = useState("Is the COW DEAD for BEEF or is the BEEF a DEAD COW ???");
-
   const portis = new Portis('8309e51d-b76e-48aa-855a-1d4801c0e9d4', in3Config, {useIn3: true});
   const web3 = new Web3(portis.provider);
+
   return (
     <div className="App">
       <header className="App-header">
