@@ -56,7 +56,7 @@ yarn start
 
 **Branch Switching:**
 * Navigate inside the web-sdk folder and checkout branch to `in3-integration`. `cd web-sdk && git checkout in3-integration && cd ..`.
-* Navigate inside the provider-engine folder and checkout branch to `in3-integration. `cd provider-engine && git checkout in3-integration && cd ..`
+* Navigate inside the provider-engine folder and checkout branch to `in3-integration`. `cd provider-engine && git checkout in3-integration && cd ..`
 
 **Script-Casting:**
 * Make sure you move into the example repo. `cd portis-example`.
