@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import cow from './cow.jpg';
 import './App.css';
 import Portis from '@portis/web3';
 import Web3 from 'web3';
@@ -37,7 +36,7 @@ function handleSend(web3, setValue) {
   sendMoney(web3).then((receipt) => {
     console.log(receipt)
     if(receipt.status) {
-      setValue("The BEEF is a DEAD COW and the COW is also DEAD to produce the BEEF. #brainf**k")
+      setValue("Money is Locked!")
     }
   })
 }
@@ -45,7 +44,7 @@ function handleSend(web3, setValue) {
 
 function App() {
 
-  const [value, setValue] = useState("Is the COW DEAD for BEEF or is the BEEF a DEAD COW ???");
+  const [value, setValue] = useState("Lock your ETH into an unretrievable account! Deposit 0ETH in 0xdeadbeef");
 
   const in3Config = {
     chainId: 'kovan',
@@ -59,11 +58,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={cow} className="App-logo" alt="cow" />
         <p>
           {value}
         </p>
-        <button className="da-button" onClick={() => handleSend(web3, setValue)}>Deposit 0 ETH to 0xDEADBEEF to know</button>
+        <button className="da-button" onClick={() => handleSend(web3, setValue)}>Deposit</button>
       </header>
     </div>
   );
