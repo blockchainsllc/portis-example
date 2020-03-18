@@ -1,4 +1,4 @@
-### Portis Wallet with IN3 - example
+## Portis Wallet with IN3 - example
 
 One would normally use the portis wallet's sdk with their web3 library like this
 
@@ -31,7 +31,7 @@ const web3 = new Web3(portis.provider);
 
 > Supported networks include only **ETHEREUM-MAINNET**, **KOVAN**, **GOERLI**. This means that exisiting dapps using portis for different chains like **RINKEBY** or **ROPSTEN** or NON ETHEREUM CHAINS cannot use IN3 functionality.
 
-### Instructions
+### INSTRUCTIONS
 
 > WARNING: There is a lot of script wizardry used to bundle three different modified packages into one example. So if it doesn't work -> it doesn't work. make sure you have `v10.17.0` of Node and `v6.11.3` of npm and `v1.21.1` of yarn.
 
