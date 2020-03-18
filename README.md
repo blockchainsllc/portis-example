@@ -38,9 +38,9 @@ const web3 = new Web3(portis.provider);
 **TL;DR:**
 ```
 mkdir portis && cd portis
-git clone git@git.slock.it:hardware/portis-example.git
-git clone git@git.slock.it:hardware/portis-web-sdk.git web-sdk
-git clone git@git.slock.it:hardware/portis-provider-engine.git provider-engine
+git clone https://github.com/slockit/portis-example.git
+git clone https://github.com/slockit/web-sdk.git web-sdk
+git clone https://github.com/slockit/provider-engine.git provider-engine
 cd web-sdk && git checkout in3-integration && cd ..
 cd provider-engine && git checkout in3-integration && cd ..
 cd portis-example
