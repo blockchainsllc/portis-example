@@ -31,7 +31,7 @@ const web3 = new Web3(portis.provider);
 
 > Supported networks include only **ETHEREUM-MAINNET**, **KOVAN**, **GOERLI**. This means that exisiting dapps using portis for different chains like **RINKEBY** or **ROPSTEN** or NON ETHEREUM CHAINS cannot use IN3 functionality.
 
-#### Instructions
+### Instructions
 
 > WARNING: There is a lot of script wizardry used to bundle three different modified packages into one example. So if it doesn't work -> it doesn't work. make sure you have `v10.17.0` of Node and `v6.11.3` of npm and `v1.21.1` of yarn.
 
@@ -65,7 +65,7 @@ yarn start
 
 The React App should open up in a browser window. Inspect the app and switch to the networks tab to see requests fly to the IN3 servers.
 
-**OPPORTUNITIES OF IMPROVEMENTS:**
+### OPPORTUNITIES OF IMPROVEMENTS:
 
 Portis requires a `nodeUrl` property in the network field for working smoothly. This is because even though they add subproviders on the provider engine their iframe interface internally uses the nodeUrl to communicate to the blockchain. So all the requests that fly outside of the widget use In3 but requests that are relayed through the widget use the `nodeUrl`. The problem lies in the fact that they load this iframe from `widget.portis.io` making it difficult for us to integrate in3 into it. Also it is closed source.
 
